@@ -20,10 +20,5 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
 
-    - name: Setup NuGet
-      uses: nuget/setup-nuget@v2
-
-    - name: Restore NuGet packages
-      run: nuget restore src/HolaMundo/HolaMundo.csproj
     - name: Build project
-      run: msbuild src/HolaMundo/HolaMundo.csproj /p:Configuration=Release
+      run: msbuild src/HolaMundo/HolaMundo.csproj /p:Configuration=Release /t:Restore;Build
