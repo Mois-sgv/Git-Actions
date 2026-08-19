@@ -21,7 +21,7 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet restore src/HolaMundo.csproj
+      run: dotnet restore src/HolaMundo/HolaMundo.csproj
     - name: Build project
-      run: dotnet build src/HolaMundo.csproj --configuration Release
+      run: dotnet build src/HolaMundo/HolaMundo.csproj --configuration Release
    
