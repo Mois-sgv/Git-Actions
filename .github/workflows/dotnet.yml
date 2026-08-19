@@ -12,16 +12,18 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore src/HolaMundo/HolaMundo.csproj
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Setup NuGet
+      uses: nuget/setup-nuget@v2
+
+    - name: Restore NuGet packages
+      run: nuget restore src/HolaMundo/HolaMundo.csproj
     - name: Build project
-      run: dotnet build src/HolaMundo/HolaMundo.csproj --configuration Release /p:VisualStudioVersion=17.0
-   
+      run: msbuild src/HolaMundo/HolaMundo.csproj /p:Configuration=Release
