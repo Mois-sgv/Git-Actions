@@ -21,4 +21,4 @@ jobs:
       uses: microsoft/setup-msbuild@v2
 
     - name: Build project
-      run: msbuild src/HolaMundo/HolaMundo.csproj /p:Configuration=Release /t:Restore;Build
+      run: msbuild src/HolaMundo/HolaMundo.csproj /p:Configuration=Release "/t:Restore;Build"
