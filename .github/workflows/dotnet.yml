@@ -23,5 +23,5 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore src/HolaMundo/HolaMundo.csproj
     - name: Build project
-      run: dotnet build src/HolaMundo/HolaMundo.csproj --configuration Release
+      run: dotnet build src/HolaMundo/HolaMundo.csproj --configuration Release /p:VisualStudioVersion=17.0
    
