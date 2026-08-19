@@ -1,24 +1,28 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
+# Nombre que se mostrará en la pestaña "Actions" de tu repositorio de GitHub
 name: CI
 
+# Define los "disparadores" (triggers) que activan este flujo automáticamente
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" ]  # Se ejecuta cada vez que subes cambios (git push) a la rama main
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main" ]  # Se ejecuta cuando alguien propone cambios hacia la rama main
 
+# Bloque que contiene los trabajos o tareas que va a realizar el servidor
 jobs:
   build:
-
+    # Sistema operativo de la máquina virtual de GitHub (Windows es obligatorio para .NET clásico)
     runs-on: windows-latest
 
+    # Lista de pasos secuenciales que ejecutará el servidor de Windows
     steps:
+    # Paso 1: Descarga una copia de todo el código de tu repositorio en el servidor virtual
     - uses: actions/checkout@v4
 
+    # Paso 2: Busca e instala las herramientas de Visual Studio y MSBuild en el servidor
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
 
+    # Paso 3: Descarga las librerías necesarias (Restore) y compila el proyecto en modo producción (Build)
     - name: Build project
       run: msbuild src/HolaMundo/HolaMundo.csproj /p:Configuration=Release "/t:Restore;Build"
